@@ -1,0 +1,43 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title='Date el gusto'
+        link(rel="stylesheet", href="./style.css")
+    body
+
+        header
+            nav
+                ul(class="list-item")
+                    li 
+                        a(href="/productos")='Productos'
+                    li
+                        a(href="/form")='Formulario'
+        
+        div(class="main")
+            if productoExiste 
+                h1='Lista de productos:' 
+                div(class="divTable")
+                    div(class="headRow")   
+                        div(class="divCell")
+                            p="Nombre"
+                        div(class="divCell")
+                            p="Precio"
+                        div(class="divCell")
+                            p="Foto"
+
+                    for item in productos
+                        div(class="divRow")
+                            div(class="divCell")
+                                p=item.title
+                            div(class="divCell")
+                                p=item.price
+                            div(class="divCell")
+                                img(src=item.thumbnail, class="pequeña", alt="imagen-producto")
+            else
+                h1='No hay productos'
+
+        footer
+            p="Date el gusto"
+            p="Contactate con nosotros: dateelgusto@gmail.com"

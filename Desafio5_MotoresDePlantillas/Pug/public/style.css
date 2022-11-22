@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Set height of body and the document to 100% */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  background-color: #e3e2de;
+}
+
+/*   Start navigation bar   */
+
+nav {
+  height: 80px;
+  background-color: rgb(162, 206, 226);
+  border-bottom: 1px solid rgb(108, 129, 250);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  float: right;
+  margin-right: 25px;
+  margin-top: 17px;
+}
+.list-item li {
+  float: left;
+  padding: 13px 13px;
+  font-size: 18px;
+  border-radius: 3px;
+  transition: all 0.7s ease-in-out;
+}
+.list-item li a {
+  color: black;
+}
+.list-item li:hover {
+  background-color: rgb(108, 129, 250);
+}
+
+/*   End navigation bar   */
+
+.main {
+  height: 70%;
+}
+
+.divTable {
+  display: table;
+  width: 60%;
+  margin: 2rem auto;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #666666;
+  border-spacing: 5px;
+}
+
+.divRow {
+  display: table-row;
+  width: auto;
+}
+
+.divCell {
+  float: left; /*fix for  buggy browsers*/
+  display: table-column;
+  width: 33%;
+  background-color: #ccc;
+}
+
+img.pequeña {
+  width: 50px;
+  height: 50px;
+}
+
+.main__form {
+  height: 60%;
+}
+
+form {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 425px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
+  padding: 2rem 1rem 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+.input-label {
+  color: #8597a3;
+  position: absolute;
+  top: 0.6em;
+}
+
+.input-field {
+  border: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #eee;
+  font: inherit;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
+  outline: 0;
+  border-bottom-color: #6658d3;
+  color: #6658d3;
+}
+
+.action-button {
+  font: inherit;
+  font-size: 1.25rem;
+  padding: 1em;
+  width: 100%;
+  font-weight: 500;
+  background-color: rgb(108, 129, 250);
+  border-radius: 6px;
+  color: #fff;
+  border: 0;
+  margin: 1em auto;
+}
+
+footer {
+  display: inline-flex;
+  background-color: rgb(162, 206, 226);
+  padding: 5%;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  border-top: 1px solid rgb(108, 129, 250);
+}

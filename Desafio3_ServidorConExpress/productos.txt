@@ -1,0 +1,6 @@
+
+[
+  { "title": "Pikachu", "price": 100, "id": 1 },
+  { "title": "Furret", "price": 200, "id": 2 },
+  { "title": "Eevee", "price": 150, "id": 3 }
+]

@@ -1,0 +1,22 @@
+{{>navbar}}
+
+<h1>Ingrese un producto:</h1>
+<div class="main__form">
+    <form name="form" action="/productos" method="POST">
+        <div class="input">
+            <label for="Title" class="input-label">Nombre:</label>
+            <input type="text" id="Title" name="title" class="input-field">
+        </div>
+        <div class="input">
+            <label for="Price" class="input-label">Precio:</label>
+            <input type="text" id="Price" name="price" class="input-field">
+        </div>
+        <div class="input">
+            <label for="URL" class="input-label">URL Foto:</label>
+            <input type="text" id="URL" name="thumbnail" class="input-field">
+        </div>           
+        <input type="submit" class="action-button">
+    </form>
+</div>
+
+{{>footer}}

@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "name": "ejercicios-en-clase",
+  "version": "1.0.0",
+  "main": "Clase7.js",
+  "scripts": {
+    "start": "nodemon Clase7.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

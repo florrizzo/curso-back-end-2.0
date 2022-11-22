@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./partials/head'); %>
+    </head>
+    <body>
+        <%- include('./partials/navbar'); %>
+        <h1>Ingrese un producto:</h1>
+        <div class="main__form">
+            <form name="form" action="/productos" method="POST">
+                <div class="input">
+                    <label for="Title" class="input-label">Nombre:</label>
+                    <input type="text" id="Title" name="title" class="input-field">
+                </div>
+                <div class="input">
+                    <label for="Price" class="input-label">Precio:</label>
+                    <input type="text" id="Price" name="price" class="input-field">
+                </div>
+                <div class="input">
+                    <label for="URL" class="input-label">URL Foto:</label>
+                    <input type="text" id="URL" name="thumbnail" class="input-field">
+                </div>           
+                <input type="submit" class="action-button">
+            </form>
+        </div>
+        
+        <%- include('./partials/footer'); %>
+    </body>
+</html>
+
+
+<!-- <div class="container">
+	code here 
+	<div class="card">
+		<div class="card-image">	
+			<h2 class="card-heading">
+				Get started
+				<small>Let us create your account</small>
+			</h2>
+		</div>
+		<form class="card-form">
+			<div class="input">
+				<input type="text" class="input-field" value="Alexander Parkinson" required/>
+				<label class="input-label">Full name</label>
+			</div>
+						<div class="input">
+				<input type="text" class="input-field" value="vlockn@gmail.com" required/>
+				<label class="input-label">Email</label>
+			</div>
+						<div class="input">
+				<input type="password" class="input-field" required/>
+				<label class="input-label">Password</label>
+			</div>
+			<div class="action">
+				<button class="action-button">Get started</button>
+			</div>
+		</form>
+	</div>
+</div>-->
