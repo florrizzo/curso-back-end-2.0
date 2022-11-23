@@ -78,10 +78,10 @@ class Contenedor {
 
 module.exports = Contenedor;
 
-// productos.txt original:
+// // productos.txt original:
 // [
-//     { "idProducto": 1, "timestamp": "", "nombre": "Red Velvet", "descripcion": "", "codigo": 3245, "foto": "https://www.elmundoeats.com/wp-content/uploads/2018/05/Red-Velvet-Cake-1.jpg", "precio": 2000, "stock": 10 },
-//     { "idProducto": 2, "timestamp": "", "nombre": "Budín de limon", "descripcion": "", "codigo": 3223, "foto": "https://www.cucinare.tv/wp-content/uploads/2020/01/Dise%C3%B1o-sin-t%C3%ADtulo-32.png", "precio": 1000, "stock": 15 },
-//     { "idProducto": 3, "timestamp": "", "nombre": "Brownie", "descripcion": "", "codigo": 3251, "foto": "https://img2.rtve.es/imagenes/aqui-tierra-receta-brownie-jesus-monedero/1585576217689.JPG", "precio": 1500, "stock": 12 }
+//     { "idProducto": 1, "timestamp": "22 / 11 / 2022, 11:50:32", "nombre": "Red Velvet", "descripcion": "Pastel de terciopelo rojo", "codigo": 3245, "foto": "https://www.elmundoeats.com/wp-content/uploads/2018/05/Red-Velvet-Cake-1.jpg", "precio": 2000, "stock": 10 },
+//     { "idProducto": 2, "timestamp": "22 / 11 / 2022, 11:26:41", "nombre": "Budín de limon", "descripcion": "Alimento de la cocina inglesa", "codigo": 3223, "foto": "https://www.cucinare.tv/wp-content/uploads/2020/01/Dise%C3%B1o-sin-t%C3%ADtulo-32.png", "precio": 1000, "stock": 15 },
+//     { "idProducto": 3, "timestamp": "22 / 11 / 2022, 11:44:22", "nombre": "Brownie", "descripcion": "Bizcocho de chocolate pequeño", "codigo": 3251, "foto": "https://img2.rtve.es/imagenes/aqui-tierra-receta-brownie-jesus-monedero/1585576217689.JPG", "precio": 1500, "stock": 12 }
 // ]
 

@@ -7,7 +7,13 @@ const routerProductos = Router();
 const routerCarrito = Router();
 const moment = require('moment');
 const Carrito = require('./classCarrito');
-const { nextTick } = require('process');
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 
 const port = process.env.PORT || 8080;
 const contenedorProducto = new Contenedor();
@@ -169,7 +175,8 @@ routerCarrito.post('/', async (req, res) => {
   try {
     const timestampCarrito = moment().format('DD / MM / YYYY, h:mm:ss');
     const idCarrito = await contenedorCarrito.nuevoCarrito(timestampCarrito);
-    res.json(`Se creó un nuevo carrito con el id: ${idCarrito}`);
+    refreshCarrito();
+    res.json(idCarrito);
   } catch {
     res.json('error');
   }
@@ -182,12 +189,12 @@ routerCarrito.delete('/:id', (req, res) => {
   if (!id.match(/^\d+/)) {
     res.json('error: "El parámetro no es un número"');
   } else if (!carrito[index]) {
-    res.json('error: "No existe ningún producto con ese número de id"');
+    res.json('error: "No existe ningún carrito con ese número de id"');
   } else {
     id = parseInt(id);
     contenedorCarrito.deleteById(id);
     refreshCarrito();
-    res.json('El producto se eliminó con éxito');
+    res.json('El carrito se eliminó con éxito');
   }
 });
 
@@ -214,6 +221,7 @@ routerCarrito.post('/:id/productos', (req, res) => {
     let idProducto = parseInt(body[0]);
     let productoParaCarrito = contenedorProducto.getById(idProducto);
     contenedorCarrito.agregarProducto(id, productoParaCarrito);
+    refreshCarrito();
     res.json(`Se añadio el producto ${producto.nombre} al carrito`);
   } catch {
     res.json('error');
@@ -225,5 +233,6 @@ routerCarrito.delete('/:id/productos/:id_prod', (req, res) => {
   let { id } = req.params;
   let { id_prod } = req.params;
   contenedorCarrito.deleteProduct(id, id_prod);
+  refreshCarrito();
   res.json(`Se eliminó el producto del carrito`)
 })

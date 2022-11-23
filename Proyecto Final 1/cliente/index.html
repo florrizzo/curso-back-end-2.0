@@ -5,18 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <button onclick="test()">Test</button>
-    <form name="form" action="/form" method="POST">
-        <label for="Title">Title:</label>
-        <input type="text" id="Title" name="title">
-        <label for="Price">Price:</label>
-        <input type="text" id="Price" name="price">
-        <label for="URL">URL:</label>
-        <input type="text" id="URL" name="thumbnail">
-        <input type="submit">
-    </form>
+    <h2>Productos:</h2>
+    <div id="lista_productos"></div>
+    <div id="post_product"></div>
+    <label for="check-admin">Es administrador:</label>
+    <input id="check_admin" type="checkbox" value="1" onclick="validacionAdmin(), refreshProductos()">
+
+    <h2>Buscar por id:</h2>
+    <label for="searchid">id:</label>
+    <input type="text" id="searchid">
+    <button onclick="buscarProducto()">Buscar</button>
+    <div id="producto_id"></div>
+
+    <!-- carrito -->
+    <h2>Carrito:</h2>
+    <button onclick="crearCarrito()">Crear carrito</button>
+    <div id="carritos"></div>
 
     <script src="index.js"></script>
 </body>
