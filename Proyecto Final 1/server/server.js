@@ -41,6 +41,10 @@ app.get('/', (req, res) => {
   res.json('Entraste a la página de Date el gusto!');
 });
 
+app.get('/*', (req, res) => {
+  res.json({ error: true, descripcion: 'ruta no encontrada' });
+});
+
 // GET: '/:id?' - Me permite listar todos los productos disponibles ó un producto por su id
 // (disponible para usuarios y administradores (middleware))
 routerProductos.get('/', (req, res) => {
@@ -167,7 +171,7 @@ routerProductos.get('/random', (req, res) => {
 // Carrito
 
 routerCarrito.get('/', (req, res) => {
-  res.json('No está seleccionado ningún carrito');
+  res.json(contenedorCarrito.getAll());
 });
 
 // POST: '/' - Crea un carrito y devuelve su id.
@@ -199,7 +203,7 @@ routerCarrito.delete('/:id', (req, res) => {
 });
 
 // GET: '/:id/productos' - Me permite listar todos los productos guardados en el carrito
-routerCarrito.get('/:id', (req, res) => {
+routerCarrito.get('/:id/productos', (req, res) => {
   let { id } = req.params;
   const index = carrito.findIndex((object) => object.idCarrito == id);
   if (!id.match(/^\d+/)) {
@@ -213,13 +217,13 @@ routerCarrito.get('/:id', (req, res) => {
 });
 
 // POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto
-routerCarrito.post('/:id/productos', (req, res) => {
+routerCarrito.post('/:id/productos/:id_prod', (req, res) => {
   try {
-    const { body } = req;
+    let { id_prod } = req.params;
+    id_prod = parseInt(id_prod);
     let { id } = req.params;
     id = parseInt(id);
-    let idProducto = parseInt(body[0]);
-    let productoParaCarrito = contenedorProducto.getById(idProducto);
+    let productoParaCarrito = contenedorProducto.getById(id_prod);
     contenedorCarrito.agregarProducto(id, productoParaCarrito);
     refreshCarrito();
     res.json(`Se añadio el producto ${producto.nombre} al carrito`);

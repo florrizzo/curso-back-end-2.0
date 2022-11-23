@@ -12,8 +12,14 @@ class Carrito {
 
     async nuevoCarrito(timestampCarrito){
         try {
-            let highestid = Math.max(...carrito.map((el) => el.idCarrito));
-            let idCarrito = highestid + 1;
+            let idCarrito;
+            if (carrito.length > 0){
+                let highestid = Math.max(...carrito.map((el) => el.idCarrito));
+                idCarrito = highestid + 1;
+            } else {
+                idCarrito = 1;
+            }
+
             let carritoNuevo = {"idCarrito": idCarrito, "timestampCarrito": timestampCarrito, "productos": []};
             carrito = carrito.concat(carritoNuevo);
             await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
@@ -35,7 +41,6 @@ class Carrito {
     
     async agregarProducto(num, producto){
             const index = carrito.findIndex(object => object.idCarrito == num);
-            console.log(carrito[0].productos)
             carrito[index].productos = carrito[index].productos.concat(producto);
             await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
     }
@@ -51,7 +56,7 @@ class Carrito {
 module.exports = Carrito;
 
 // carrito.txt original:
-// [{"idCarrito": 1,"timestampCarrito": "", "productos": [
+// [{"idCarrito": 1,"timestampCarrito": "22 / 11 / 2022, 11:50:32", "productos": [
 //     { "idProducto": 1, "timestamp": "22 / 11 / 2022, 11:50:32", "nombre": "Red Velvet", "descripcion": "Pastel de terciopelo rojo", "codigo": 3245, "foto": "https://www.elmundoeats.com/wp-content/uploads/2018/05/Red-Velvet-Cake-1.jpg", "precio": 2000, "stock": 10 },
 //     { "idProducto": 2, "timestamp": "22 / 11 / 2022, 11:26:41", "nombre": "Budín de limon", "descripcion": "Alimento de la cocina inglesa", "codigo": 3223, "foto": "https://www.cucinare.tv/wp-content/uploads/2020/01/Dise%C3%B1o-sin-t%C3%ADtulo-32.png", "precio": 1000, "stock": 15 },
 //     { "idProducto": 3, "timestamp": "22 / 11 / 2022, 11:44:22", "nombre": "Brownie", "descripcion": "Bizcocho de chocolate pequeño", "codigo": 3251, "foto": "https://img2.rtve.es/imagenes/aqui-tierra-receta-brownie-jesus-monedero/1585576217689.JPG", "precio": 1500, "stock": 12 }

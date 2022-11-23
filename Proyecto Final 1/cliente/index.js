@@ -5,7 +5,6 @@ let htmlCarritos = "";
 let admin = false;
 let checkAdmin = ";";
 let carritos = [];
-console.log(carritos);
 
 function validacionAdmin() {
   if (document.querySelector('input[id="check_admin"]:checked')) {
@@ -142,7 +141,7 @@ function borrarProducto(id) {
 
 function buscarProducto() {
   const id = document.getElementById("searchid").value;
-  const url = "http://localhost:8080/api/productos/" + id;
+  const url = `http://localhost:8080/api/productos/${id}`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => {
@@ -166,12 +165,29 @@ function buscarProducto() {
 }
 
 function refreshCarritos() {
-  carritos.forEach((element) => {
-    htmlCarritos = element.htmlcarrito;
-  });
-  console.log(carritos);
-  document.getElementById("carritos").innerHTML = htmlCarritos;
-}
+  fetch("http://localhost:8080/api/carrito")
+    .then((response) => response.json())
+    .then((json) => {
+      carritos = json;
+      htmlCarritos = "";
+      if (carritos.length > 0){
+        carritos.forEach((element) => {
+          htmlCarritos += `
+    <div class="card">
+        <h2>Carrito: <span id="carritoid">${element.idCarrito}</span></h2>
+        <div id="productos_carrito${element.idCarrito}"></div>
+        <button onclick = "verProductosCarrito(${element.idCarrito})">Ver productos</button>
+        <label for="carrito_producto_${element.idCarrito}">id del producto:</label>
+        <input type="text" id="carrito_producto_${element.idCarrito}">
+        <button onclick = "agregarProductoCarrito(${element.idCarrito})">Agregar producto</button>
+        <button onclick = "eliminarProductoCarrito(${element.idCarrito})">Eliminar producto</button>
+        <button onclick = "eliminarCarrito(${element.idCarrito})">Eliminar carrito</button>
+    </div>`;
+      })}
+      document.getElementById("carritos").innerHTML = htmlCarritos;
+})}
+
+refreshCarritos();
 
 function crearCarrito() {
   fetch("http://localhost:8080/api/carrito", {
@@ -182,23 +198,6 @@ function crearCarrito() {
   })
     .then((response) => response.json())
     .then((json) => {
-      let htmlCarritoNuevo = {
-        carritoid: json,
-        htmlcarrito: `
-            <div class="card">
-                <h2>Carrito: <span id="carritoid">${json}</span></h2>
-                <div class="productos_carrito"></div>
-                <button>Ver productos</button>
-                <label for="carrito_producto_id">id del producto:</label>
-                <input type="text" id="carrito_producto_id">
-                <button>Agregar producto</button>
-                <button>Eliminar producto</button>
-                <button onclick = "eliminarCarrito(${json})">Eliminar carrito</button>
-            </div>`,
-      };
-      console.log(carritos);
-      carritos.push(htmlCarritoNuevo);
-      console.log(carritos);
       refreshCarritos();
     })
     .catch((error) => {
@@ -207,7 +206,7 @@ function crearCarrito() {
 }
 
 function eliminarCarrito(id) {
-  const url = "http://localhost:8080/api/carrito/" + id;
+  const url = `http://localhost:8080/api/carrito/${id}`;
   fetch(url, {
     method: "DELETE",
     headers: {
@@ -217,14 +216,70 @@ function eliminarCarrito(id) {
     .then((response) => response.json())
     .then((json) => {
       const index = carritos.findIndex((object) => object.carritoid == id);
-      console.log(carritos);
-      console.log(id);
-      console.log(index);
       carritos = carritos.splice(index, 1);
-      console.log(carritos);
       refreshCarritos();
     })
     .catch((error) => {
       console.error("Error:", error);
+    });
+}
+
+function verProductosCarrito(id) {
+  const url = `http://localhost:8080/api/carrito/${id}/productos`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => {
+      let productosCarrito = json;
+      console.log(productosCarrito);
+      let htmlProductosCarrito = "";
+      productosCarrito.forEach((element) => {
+        htmlProductosCarrito += `
+        <div class="card"> 
+            <p>id: ${element.idProducto}</p>
+            <p>${element.timestamp}</p>
+            <p>Nombre: ${element.nombre}</p>
+            <p>Descripción: ${element.descripcion}</p>
+            <p>Código: ${element.codigo}</p>
+            <p>Foto: ${element.foto}</p>
+            <p>Precio: ${element.precio}</p>
+            <p>Stock: ${element.stock}</p>
+        </div>`;
+      });
+      document.getElementById(`productos_carrito${id}`).innerHTML =
+        htmlProductosCarrito;
+    });
+}
+
+function agregarProductoCarrito(idCarrito) {
+  const id_prod = document.getElementById(
+    `carrito_producto_${idCarrito}`
+  ).value;
+  const url = `http://localhost:8080/api/carrito/${idCarrito}/productos/${id_prod}`;
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      refreshCarritos();
+    });
+}
+
+function eliminarProductoCarrito(idCarrito) {
+  const id_prod = document.getElementById(
+    `carrito_producto_${idCarrito}`
+  ).value;
+  const url = `http://localhost:8080/api/carrito/${idCarrito}/productos/${id_prod}`;
+  fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      refreshCarritos();
     });
 }
