@@ -1,56 +1,62 @@
 const fs = require('fs');
-let carrito = JSON.parse(fs.readFileSync("./carrito.txt"));
+let carrito = JSON.parse(fs.readFileSync('./carrito.txt'));
 
 class Carrito {
-    constructor(){
-        this.filePath = "./carrito.txt";        
-    }
+  constructor() {
+    this.filePath = './carrito.txt';
+  }
 
-    getAll(){        
-        return carrito        
-    }
+  getAll() {
+    return carrito;
+  }
 
-    async nuevoCarrito(timestampCarrito){
-        try {
-            let idCarrito;
-            if (carrito.length > 0){
-                let highestid = Math.max(...carrito.map((el) => el.idCarrito));
-                idCarrito = highestid + 1;
-            } else {
-                idCarrito = 1;
-            }
+  async nuevoCarrito(timestampCarrito) {
+    try {
+      let idCarrito;
+      if (carrito.length > 0) {
+        let highestid = Math.max(...carrito.map((el) => el.idCarrito));
+        idCarrito = highestid + 1;
+      } else {
+        idCarrito = 1;
+      }
 
-            let carritoNuevo = {"idCarrito": idCarrito, "timestampCarrito": timestampCarrito, "productos": []};
-            carrito = carrito.concat(carritoNuevo);
-            await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
-            return idCarrito;
-        } catch {
-            console.log('Se ha producido un error');
-        }
+      let carritoNuevo = {
+        idCarrito: idCarrito,
+        timestampCarrito: timestampCarrito,
+        productos: [],
+      };
+      carrito = carrito.concat(carritoNuevo);
+      await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
+      return idCarrito;
+    } catch {
+      console.log('Se ha producido un error');
     }
+  }
 
-    async deleteById(num){
-        try{
-            const index = carrito.map(object => object.idCarrito).indexOf(num);
-            carrito.splice(index, 1);
-            await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
-        } catch {
-            console.log('Se ha producido un error');
-        }        
+  async deleteById(num) {
+    try {
+      const index = carrito.map((object) => object.idCarrito).indexOf(num);
+      carrito.splice(index, 1);
+      await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
+    } catch {
+      console.log('Se ha producido un error');
     }
-    
-    async agregarProducto(num, producto){
-            const index = carrito.findIndex(object => object.idCarrito == num);
-            carrito[index].productos = carrito[index].productos.concat(producto);
-            await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
-    }
+  }
 
-    async deleteProduct(num, id_prod){
-        const index = carrito.findIndex(object => object.idCarrito == num);
-        const indexProduct = carrito[index].productos.findIndex(object => object.idProducto == id_prod);
-        carrito[index].productos.splice(indexProduct, 1);
-        await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
-    }
+  async agregarProducto(num, producto) {
+    const index = carrito.findIndex((object) => object.idCarrito == num);
+    carrito[index].productos = carrito[index].productos.concat(producto);
+    await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
+  }
+
+  async deleteProduct(num, id_prod) {
+    const index = carrito.findIndex((object) => object.idCarrito == num);
+    const indexProduct = carrito[index].productos.findIndex(
+      (object) => object.idProducto == id_prod
+    );
+    carrito[index].productos.splice(indexProduct, 1);
+    await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
+  }
 }
 
 module.exports = Carrito;

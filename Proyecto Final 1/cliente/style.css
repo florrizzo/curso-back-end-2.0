@@ -1,26 +1,26 @@
 body {
-    align-content: center;
+  align-content: center;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 #lista_productos {
-    margin-top: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 
 .card {
-    background: rgb(232, 225, 231);
-    box-shadow: 0 0 16px rgba(32, 4, 69, 0.5);
-    width:25%;
-    margin:1.66%;
-    margin-top: 40px;
-    padding: 10px;
-    border-radius: 20px;
-    text-align: center;
+  background: rgb(232, 225, 231);
+  box-shadow: 0 0 16px rgba(32, 4, 69, 0.5);
+  width: 25%;
+  margin: 1.66%;
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
 }

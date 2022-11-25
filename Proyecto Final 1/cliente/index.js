@@ -170,7 +170,7 @@ function refreshCarritos() {
     .then((json) => {
       carritos = json;
       htmlCarritos = "";
-      if (carritos.length > 0){
+      if (carritos.length > 0) {
         carritos.forEach((element) => {
           htmlCarritos += `
     <div class="card">
@@ -183,9 +183,14 @@ function refreshCarritos() {
         <button onclick = "eliminarProductoCarrito(${element.idCarrito})">Eliminar producto</button>
         <button onclick = "eliminarCarrito(${element.idCarrito})">Eliminar carrito</button>
     </div>`;
-      })}
+        });
+      }
       document.getElementById("carritos").innerHTML = htmlCarritos;
-})}
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 
 refreshCarritos();
 
@@ -247,6 +252,9 @@ function verProductosCarrito(id) {
       });
       document.getElementById(`productos_carrito${id}`).innerHTML =
         htmlProductosCarrito;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }
 
@@ -264,6 +272,9 @@ function agregarProductoCarrito(idCarrito) {
     .then((response) => response.json())
     .then((json) => {
       refreshCarritos();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }
 
@@ -281,5 +292,8 @@ function eliminarProductoCarrito(idCarrito) {
     .then((response) => response.json())
     .then((json) => {
       refreshCarritos();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }

@@ -7,13 +7,12 @@ const routerProductos = Router();
 const routerCarrito = Router();
 const moment = require('moment');
 const Carrito = require('./classCarrito');
-const cors = require("cors");
+const cors = require('cors');
 app.use(
   cors({
-    origin: "*",
+    origin: '*',
   })
 );
-
 
 const port = process.env.PORT || 8080;
 const contenedorProducto = new Contenedor();
@@ -226,7 +225,7 @@ routerCarrito.post('/:id/productos/:id_prod', (req, res) => {
     let productoParaCarrito = contenedorProducto.getById(id_prod);
     contenedorCarrito.agregarProducto(id, productoParaCarrito);
     refreshCarrito();
-    res.json(`Se añadio el producto ${producto.nombre} al carrito`);
+    res.json(`Se añadio el producto ${productoParaCarrito.nombre} al carrito`);
   } catch {
     res.json('error');
   }
@@ -238,5 +237,5 @@ routerCarrito.delete('/:id/productos/:id_prod', (req, res) => {
   let { id_prod } = req.params;
   contenedorCarrito.deleteProduct(id, id_prod);
   refreshCarrito();
-  res.json(`Se eliminó el producto del carrito`)
-})
+  res.json(`Se eliminó el producto del carrito`);
+});
