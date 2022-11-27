@@ -179,7 +179,7 @@ routerCarrito.post('/', async (req, res) => {
     const timestampCarrito = moment().format('DD / MM / YYYY, h:mm:ss');
     const idCarrito = await contenedorCarrito.nuevoCarrito(timestampCarrito);
     refreshCarrito();
-    res.json(idCarrito);
+    res.json(`Se creó un carrito nuevo con el id: ${idCarrito}`);
   } catch {
     res.json('error');
   }
@@ -215,7 +215,7 @@ routerCarrito.get('/:id/productos', (req, res) => {
   }
 });
 
-// POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto
+// POST: '/:id/productos/:id_prod' - Para incorporar productos al carrito por su id de producto
 routerCarrito.post('/:id/productos/:id_prod', (req, res) => {
   try {
     let { id_prod } = req.params;
