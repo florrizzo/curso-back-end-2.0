@@ -1,7 +1,6 @@
 const express = require('express');
 const { Router } = express;
 const Contenedor = require('./classContainer');
-const fs = require('fs');
 const app = express();
 const routerProductos = Router();
 const routerCarrito = Router();
@@ -52,13 +51,10 @@ routerProductos.get('/', (req, res) => {
 
 routerProductos.get('/:id', (req, res) => {
   let { id } = req.params;
-  const index = productos.findIndex((object) => object.idProducto == id);
-  if (!id.match(/^\d+/)) {
-    res.json('error: "El parámetro no es un número"');
-  } else if (!productos[index]) {
+  id = parseInt(id);
+  if (!contenedorProducto.getById(id)) {
     res.json('error: "No existe ningún producto con ese número de id"');
   } else {
-    id = parseInt(id);
     res.json(contenedorProducto.getById(id));
   }
 });
@@ -223,9 +219,15 @@ routerCarrito.post('/:id/productos/:id_prod', (req, res) => {
     let { id } = req.params;
     id = parseInt(id);
     let productoParaCarrito = contenedorProducto.getById(id_prod);
-    contenedorCarrito.agregarProducto(id, productoParaCarrito);
-    refreshCarrito();
-    res.json(`Se añadio el producto ${productoParaCarrito.nombre} al carrito`);
+    if (!contenedorCarrito.getById(id)){
+      res.json('error: "No existe ningún carrito con ese número de id"')
+    } else if (!productoParaCarrito) {
+      res.json('error: "No existe ningún producto con ese número de id"')
+    } else {
+      contenedorCarrito.agregarProducto(id, productoParaCarrito);
+      refreshCarrito();
+      res.json(`Se añadio el producto ${productoParaCarrito.nombre} al carrito`);
+    } 
   } catch {
     res.json('error');
   }
@@ -233,9 +235,22 @@ routerCarrito.post('/:id/productos/:id_prod', (req, res) => {
 
 // DELETE: '/:id/productos/:id_prod' - Eliminar un producto del carrito por su id de carrito y de producto
 routerCarrito.delete('/:id/productos/:id_prod', (req, res) => {
-  let { id } = req.params;
-  let { id_prod } = req.params;
-  contenedorCarrito.deleteProduct(id, id_prod);
-  refreshCarrito();
-  res.json(`Se eliminó el producto del carrito`);
+ try {
+    let { id_prod } = req.params;
+    id_prod = parseInt(id_prod);
+    let { id } = req.params;
+    id = parseInt(id);
+    let productoCarrito = contenedorProducto.getById(id_prod);
+    if (!contenedorCarrito.getById(id)){
+      res.json('error: "No existe ningún carrito con ese número de id"')
+    } else if (!productoCarrito) {
+      res.json('error: "No existe ningún producto con ese número de id"')
+    } else {
+      contenedorCarrito.deleteProduct(id, id_prod);
+      refreshCarrito();
+      res.json(`Se eliminó el producto del carrito`);
+    } 
+  } catch {
+    res.json('error');
+  }
 });

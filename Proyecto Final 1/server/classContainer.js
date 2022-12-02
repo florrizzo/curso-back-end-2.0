@@ -73,6 +73,7 @@ class Contenedor {
         return productos[index];
       } else {
         console.log('No existe el número de id elegido');
+        return false;
       }
     } catch {
       console.log('Se ha producido un error');
@@ -86,9 +87,14 @@ class Contenedor {
   async deleteById(num) {
     try {
       const index = productos.map((object) => object.idProducto).indexOf(num);
-      productos.splice(index, 1);
-      console.log(productos);
-      await fs.promises.writeFile(this.filePath, JSON.stringify(productos));
+      if (productos[index]) {
+        productos.splice(index, 1);
+        await fs.promises.writeFile(this.filePath, JSON.stringify(productos));
+        return productos[index];
+      } else {
+        console.log('No existe el número de id elegido');
+        return false;
+      }
     } catch {
       console.log('Se ha producido un error');
     }

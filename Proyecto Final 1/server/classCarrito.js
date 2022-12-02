@@ -10,6 +10,20 @@ class Carrito {
     return carrito;
   }
 
+  getById(num) {
+    try {
+      const index = carrito.findIndex((object) => object.idCarrito == num);
+      if (carrito[index]) {
+        return carrito[index];
+      } else {
+        console.log('No existe el número de id elegido');
+        return false;
+      }
+    } catch {
+      console.log('Se ha producido un error');
+    }
+  }
+
   async nuevoCarrito(timestampCarrito) {
     try {
       let idCarrito;
@@ -36,8 +50,14 @@ class Carrito {
   async deleteById(num) {
     try {
       const index = carrito.map((object) => object.idCarrito).indexOf(num);
-      carrito.splice(index, 1);
-      await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
+      if (carrito[index]) {
+        carrito.splice(index, 1);
+        await fs.promises.writeFile(this.filePath, JSON.stringify(carrito));
+        return carrito[index];
+      } else {
+        console.log('No existe el número de id elegido');
+        return false;
+      }
     } catch {
       console.log('Se ha producido un error');
     }

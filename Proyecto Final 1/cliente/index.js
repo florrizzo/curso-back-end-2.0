@@ -133,6 +133,7 @@ function borrarProducto(id) {
     .then((response) => response.json())
     .then((json) => {
       console.log("Success");
+      refreshProductos();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -141,11 +142,15 @@ function borrarProducto(id) {
 
 function buscarProducto() {
   const id = document.getElementById("searchid").value;
+  const error = 'error: "No existe ningún producto con ese número de id"';
   const url = `http://localhost:8080/api/productos/${id}`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => {
       productos = json;
+      if (productos == error){
+        document.getElementById("producto_id").innerHTML = error;
+    } else{
       htmlProductos = `
         <div class="card"> 
             <p>id: ${productos.idProducto}</p>
@@ -158,6 +163,7 @@ function buscarProducto() {
             <p>Stock: ${productos.stock}</p>
         </div>`;
       document.getElementById("producto_id").innerHTML = htmlProductos;
+    }
     })
     .catch((error) => {
       console.error("Error:", error);
