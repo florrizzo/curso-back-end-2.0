@@ -1,0 +1,80 @@
+﻿Crear carpeta C:\miBaseMongo
+Levantar servidor:
+mongod --port 27017 --dbpath C:\miBaseMongo
+
+Abrir cliente:
+mongo
+
+# 0. Utilizando Mongo Shell, crear una base de datos llamada ecommerce que contenga dos colecciones: mensajes y productos.
+use ecommerce
+db.createCollection("productos")
+db.createCollection("mensajes")
+
+# 1,2. Agregar 10 documentos con valores distintos a las colecciones mensajes y productos.
+db.productos.insert([
+	{nombre: "Red Velvet", descripcion: "Pastel de terciopelo rojo", codigo: 3245, foto: "https://www.elmundoeats.com/wp-content/uploads/2018/05/Red-Velvet-Cake-1.jpg", precio: 1700, stock: 10},
+	{nombre: "Budín de limon", descripcion: "Alimento de la cocina inglesa", codigo: 3223, foto: "https://www.cucinare.tv/wp-content/uploads/2020/01/Dise%C3%B1o-sin-t%C3%ADtulo-32.png", precio: 580, stock: 15},
+	{nombre: "Brownie", descripcion: "Bizcocho de chocolate pequeño", codigo: 3251, foto: "https://img2.rtve.es/imagenes/aqui-tierra-receta-brownie-jesus-monedero/1585576217689.JPG", precio: 1500, stock: 12},
+	{nombre: "Tres leches", descripcion: "Pastel frio", codigo: 6748, foto: "https://st2.depositphotos.com/27072770/50262/i/450/depositphotos_502620128-stock-photo-three-milk-cake-traditional-dessert.jpg", precio: 3500, stock: 20},
+	{nombre: "Marquesa", descripcion: "Torta fria, codigo: 5276, foto: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5YerPs5-__GOUr0_C1m2va4ZHmmkqTqDrog&usqp=CAU", precio: 4990, stock: 15},
+	{nombre: "Cachito", descripcion: "Pan relleno", codigo: 2877, foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcxhGqki8TQqZ89-fCLDJSV3t7XCmCipY_Ow&usqp=CAU", precio: 1280, stock: 18 },
+	{nombre: "Paneton", descripcion: "Biscocho relleno de chocolate", codigo: 9887, foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-Irrgkp8qtmidcXy__NAt5tjgi2HkHKcYA&usqp=CAU", precio: 2500, stock: 15},
+	{nombre: "Cinnamon rolls", descripcion: "Roll de canela", codigo: 1443, foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ66AQHRrc-pRclWXKZXRalIhDmq9sANMvh5w&usqp=CAU", precio: 2300, stock: 17}, 
+	{nombre: "Waffles", descripcion: "Panquecas", codigo: 6423, foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYfsugg5Dp2GLg4K7RQsR9rM68EBryJHam8Q&usqp=CAU", precio: 2700, stock: 10},
+	{nombre: "Volcan de Chocolate", descripcion: "Biscocho relleno de chocolate", codigo: 7345, foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO6UELmfHgjh168nW0KkpF5F4HAt2OPFYVRA&usqp=CAU", precio: 3200, stock: 20}])
+
+db.mensajes.insert([
+{email:"hermione@gmail.com", mensaje:"Se conecto un nuevo usuario"},
+{email:"hermione@gmail.com", mensaje:"Hola, buenas tardes"},
+{email: "dateelgusto@gmail.com", mensaje:"Buenas tardes, en que te podemos ayudar?"},
+{email:"hermione@gmail.com", mensaje: "Quería saber si tienen stock de Tres leches"},
+{email: "dateelgusto@gmail.com", mensaje: "Sí, tenemos disponibles 20"},
+{email: "hermione@gmail.com", mensaje: "Te puedo pedir 3 para mañana? por favor"},
+{email:"dateelgusto@gmail.com", mensaje: "Sí, para retirar en el local, o con envío?"},
+{email: "hermione@gmail.com", mensaje: "Bueno, podes retirar después del medio día"},
+{email:"hermione@gmail.com", mensaje:"Gracias, feliz tarde!"},
+{email:"dateelgusto@gmail.com", mensaje:"No de nada, feliz tarde!"}])
+
+# 3. Listar todos los documentos en cada colección.
+db.productos.find()
+db.mensajes.find()
+
+# 4. Mostrar la cantidad de documentos almacenados en cada una de ellas.
+db.productos.estimatedDocumentCount()
+db.mensajes.estimatedDocumentCount()
+
+# 5. Realizar un CRUD sobre la colección de productos:
+# a. Agregar un producto más en la colección de productos
+db.productos.insertOne({nombre: "Chipa", descripcion: "Pan de queso", codigo: 4145, foto: "https://media.istockphoto.com/id/1089705568/es/foto/pan-de-queso-brasile%C3%B1o-snack.jpg?b=1&s=612x612&w=0&k=20&c=2bmtONmG844lR4dYCqSub9LblyMEEUbdwOn-YCgho0I=", precio: 900, stock: 12})
+
+# b. Realizar una consulta por nombre de producto específico:
+# i) Listar los productos con precio menor a 1000 pesos.
+db.productos.find({precio: {$lt: 1000}})
+
+# ii) Listar los productos con precio entre los 1000 a 3000 pesos.
+db.productos.find({$and: [{precio: {$gt: 1000}},{precio: {$lt: 3000}}]})
+
+# iii) Listar los productos con precio mayor a 3000 pesos.
+db.productos.find({precio: {$gt: 3000}})
+
+# iv) Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+db.productos.find().sort({ precio: 1 }).skip(2).limit(1)
+
+# c. Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100.
+db.productos.updateMany({}, { $set: { extraStock: 100 } })
+
+# d. Cambiar el stock a cero de los productos con precios mayores a 4000 pesos.
+db.productos.updateMany({ precio: { $gt: 4000 } }, { $set: { stock: 0 } })
+
+# e. Borrar los productos con precio menor a 1000 pesos.
+db.productos.deleteMany({ precio: { $lt: 1000 } })
+
+# 6. Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+db.createUser({ user: 'pepe', pwd: 'asd456', roles: [{ role: 'read', db: 'ecommerce' }] })
+
+# Verificar usuario 'pepe'
+mongo - u pepe - p asd456
+dd.products.insertOne({ name: 'Wallet' }) 
+# => not authorized
+
+
