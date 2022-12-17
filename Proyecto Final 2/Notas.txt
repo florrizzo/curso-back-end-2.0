@@ -1,0 +1,9 @@
+MongoDB
+usuario: CoderBackEnd
+password: QSaze8bBnE7PX8Tz
+
+MongoDBCompass
+mongodb+srv://CoderBackEnd:<password>@cluster0.onhgo54.mongodb.net/test
+
+MongoDBVSC
+mongodb+srv://CoderBackEnd:QSaze8bBnE7PX8Tz@cluster0.onhgo54.mongodb.net/test
