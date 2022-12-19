@@ -1,4 +1,4 @@
-const ContenedorArchivo = require("../../contenedores/ContenedorArchivo");
+import ContenedorArchivo from "../../contenedores/ContenedorArchivo.js";
 
 class CarritosDaoArchivo extends ContenedorArchivo {
     constructor(){
@@ -6,4 +6,4 @@ class CarritosDaoArchivo extends ContenedorArchivo {
     }
 }
 
-module.exports = CarritosDaoArchivo;
+export default CarritosDaoArchivo;

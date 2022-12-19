@@ -1,4 +1,4 @@
-const ContenedorMemoria = require("../../contenedores/ContenedorMemoria");
+import ContenedorMemoria from "../../contenedores/ContenedorMemoria.js";
 
 class ProductosDaoMemoria extends ContenedorMemoria {
     constructor(){
@@ -6,4 +6,4 @@ class ProductosDaoMemoria extends ContenedorMemoria {
     }
 }
 
-module.exports = ProductosDaoMemoria;
+export default ProductosDaoMemoria;

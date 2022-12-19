@@ -1,11 +1,11 @@
-const express = require("express");
+import express from "express";
 const { Router } = express;
 const routerCarrito = Router();
-const CarritosDaoArchivo = require("../src/daos/carritos/CarritosDaoArchivos");
+import CarritosDaoArchivo from "../src/daos/carritos/CarritosDaoArchivos.js";
 const contenedorCarritos = new CarritosDaoArchivo();
-const ProductosDaoArchivo = require("../src/daos/productos/ProductosDaoArchivo");
+import ProductosDaoArchivo from "../src/daos/productos/ProductosDaoArchivo.js";
 const contenedorProducto = new ProductosDaoArchivo();
-const moment = require("moment");
+import moment from "moment";
 
 routerCarrito.get("/", async (req, res) => {
   const lista = contenedorCarritos.getAll();
@@ -84,4 +84,4 @@ routerCarrito.delete("/:id/productos/:id_prod", (req, res) => {
   }
 });
 
-module.exports = routerCarrito;
+export default routerCarrito;
