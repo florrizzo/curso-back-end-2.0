@@ -75,7 +75,6 @@ class ContenedorArchivo {
           stock: stock,
         };
         lista[index] = productoNuevo;
-        console.log(`Se añadió el producto ${productoNuevo.nombre} a la lista`);
         await fs.promises.writeFile(this.filePath, JSON.stringify(lista));
         return `Se actualizó el producto ${productoNuevo.nombre}`;
       } else {

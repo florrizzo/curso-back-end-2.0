@@ -7,14 +7,13 @@ import moment from "moment";
 const producto = new instancia.producto;
 
 routerProductos.get("/", async (req, res) => {
-    const lista = producto.getAll();
+    const lista = await producto.getAll('productos');
     res.json(lista);
   });
   
-  routerProductos.get("/:id", (req, res) => {
-    let { id } = req.params;
-    id = parseInt(id);
-    res.json(producto.getById(id));
+  routerProductos.get("/:id", async (req, res) => {
+    let { id } = req.params; 
+    res.json(await producto.getById(id, 'productos'));
   });
   
   routerProductos.post("/", async (req, res) => {
@@ -29,14 +28,13 @@ routerProductos.get("/", async (req, res) => {
       body.precio,
       body.stock
     );
-    res.json(producto.getById(id));
+    res.json('El producto se añadió con el id: ' + id);
   });
   
   routerProductos.put("/:id", async (req, res) => {
     try {
       let { id } = req.params;
       const { body } = req;
-      id = parseInt(id);
       const timestamp = moment().format("DD / MM / YYYY, h:mm:ss");
       const resultado = await producto.replace(
         id,
@@ -58,8 +56,7 @@ routerProductos.get("/", async (req, res) => {
       '/:id',
       async (req, res) => {
           let { id } = req.params;
-          id = parseInt(id);
-          let respuesta = await producto.deleteById(id)
+          let respuesta = await producto.deleteById(id, 'productos')
           res.json(respuesta);
       }
     );  
