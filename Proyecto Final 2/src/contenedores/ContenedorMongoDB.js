@@ -126,7 +126,7 @@ class ContenedorMongoDB {
     const index = lista.findIndex((object) => object.id == num);
     lista[index].productos.push(producto)
     await this.model.updateOne(
-      { _id: id_prod },
+      { _id: num },
       {
         $set: {
           productos: lista[index].productos}

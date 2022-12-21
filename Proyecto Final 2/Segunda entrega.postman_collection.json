@@ -33,7 +33,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/productos/AolRDPGWCDPqgTvJNDQW",
+					"raw": "http://localhost:8080/api/productos/AGgTgLxbEz49IjwZMCGh",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -42,7 +42,7 @@
 					"path": [
 						"api",
 						"productos",
-						"AolRDPGWCDPqgTvJNDQW"
+						"AGgTgLxbEz49IjwZMCGh"
 					]
 				}
 			},
@@ -55,7 +55,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"nombre\": \"Tres leches\", \r\n\"descripcion\": \"Pastel frio\", \r\n\"codigo\": 6734, \r\n\"foto\": \"https://st2.depositphotos.com/27072770/50262/i/450/depositphotos_502620128-stock-photo-three-milk-cake-traditional-dessert.jpg\", \r\n\"precio\": 3500, \r\n\"stock\": 20}",
+					"raw": "{\"nombre\": \"Budín de limon\", \r\n\"descripcion\": \"Alimento de la cocina inglesa\", \r\n\"codigo\": 3223, \r\n\"foto\": \"https://www.cucinare.tv/wp-content/uploads/2020/01/Dise%C3%B1o-sin-t%C3%ADtulo-32.png\", \r\n\"precio\": 580, \r\n\"stock\": 15}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,10 +84,15 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"nombre\": \"Tres leches\", \r\n\"descripcion\": \"Pastel frio\", \r\n\"codigo\": 1111, \r\n\"foto\": \"https://st2.depositphotos.com/27072770/50262/i/450/depositphotos_502620128-stock-photo-three-milk-cake-traditional-dessert.jpg\", \r\n\"precio\": 3500, \r\n\"stock\": 11}"
+					"raw": "{\"nombre\": \"Budín de limon\", \r\n\"descripcion\": \"Alimento de la cocina inglesa\", \r\n\"codigo\": 1111, \r\n\"foto\": \"https://www.cucinare.tv/wp-content/uploads/2020/01/Dise%C3%B1o-sin-t%C3%ADtulo-32.png\", \r\n\"precio\": 580, \r\n\"stock\": 11}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/productos/0BMPzoVNejn8srVgZWj0",
+					"raw": "http://localhost:8080/api/productos/AGgTgLxbEz49IjwZMCGh",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -96,7 +101,7 @@
 					"path": [
 						"api",
 						"productos",
-						"0BMPzoVNejn8srVgZWj0"
+						"AGgTgLxbEz49IjwZMCGh"
 					]
 				}
 			},
@@ -108,7 +113,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/productos/1",
+					"raw": "http://localhost:8080/api/productos/QiLqIwTGrJOBmb2tDIWH",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -117,7 +122,7 @@
 					"path": [
 						"api",
 						"productos",
-						"1"
+						"QiLqIwTGrJOBmb2tDIWH"
 					]
 				}
 			},
@@ -145,12 +150,12 @@
 			"response": []
 		},
 		{
-			"name": "GET BY ID CART",
+			"name": "GET PRODUCTS BY ID CART",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/carrito/TRubXXvmQbT3Zpk3u2nV/QEjbE1dVcQuFoFuP7n59",
+					"raw": "http://localhost:8080/api/carrito/H84yVEm3M1zGVR0oZUEp/productos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -159,8 +164,8 @@
 					"path": [
 						"api",
 						"carrito",
-						"TRubXXvmQbT3Zpk3u2nV",
-						"QEjbE1dVcQuFoFuP7n59"
+						"H84yVEm3M1zGVR0oZUEp",
+						"productos"
 					]
 				}
 			},
@@ -187,12 +192,12 @@
 			"response": []
 		},
 		{
-			"name": "POST PRODUCTO TO CART",
+			"name": "POST PRODUCT TO CART",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/carrito/TRubXXvmQbT3Zpk3u2nV/productos/QEjbE1dVcQuFoFuP7n59",
+					"raw": "http://localhost:8080/api/carrito/H84yVEm3M1zGVR0oZUEp/productos/QEjbE1dVcQuFoFuP7n59",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -201,7 +206,7 @@
 					"path": [
 						"api",
 						"carrito",
-						"TRubXXvmQbT3Zpk3u2nV",
+						"H84yVEm3M1zGVR0oZUEp",
 						"productos",
 						"QEjbE1dVcQuFoFuP7n59"
 					]
@@ -215,7 +220,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/carrito/2",
+					"raw": "http://localhost:8080/api/carrito/VjzHL84kVOTVmDYPpOGL",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -224,7 +229,7 @@
 					"path": [
 						"api",
 						"carrito",
-						"2"
+						"VjzHL84kVOTVmDYPpOGL"
 					]
 				}
 			},

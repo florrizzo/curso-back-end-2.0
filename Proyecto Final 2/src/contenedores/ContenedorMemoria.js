@@ -198,7 +198,7 @@ class ContenedorMemoria {
       } else {
         return "No existe la lista";
       }
-      const index = lista.map((object) => object.id).indexOf(num);
+      const index = lista.findIndex((object) => object.id == num);
       if (lista[index]) {
         if (list == 'productos'){
           this.listProducts.splice(index, 1);
@@ -240,10 +240,10 @@ class ContenedorMemoria {
     }
   }
 
-  getProductsFromCart(id) {
+  getProductsFromCart(num) {
     try {
       const lista = this.listCarts;
-      const index = lista.map((object) => object.id).indexOf(id);
+      const index = lista.findIndex((object) => object.id == num);
       if (lista[index]) {
         return lista[index].productos;
       } else {

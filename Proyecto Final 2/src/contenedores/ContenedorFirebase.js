@@ -76,8 +76,7 @@ class ContenedorFirebase {
     const lista = await this.coleccion.get();
     const validacion = validacionId(lista, num);
     if (validacion) {
-      const refDocMati = this.coleccion.doc(num);
-      await refDocMati.update({
+      await this.coleccion.doc(num).update({
         timestamp: timestamp,
         nombre: nombre,
         descripcion: descripcion,

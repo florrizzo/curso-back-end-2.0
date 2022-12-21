@@ -89,7 +89,7 @@ class ContenedorArchivo {
   async deleteById(num) {
     try {
       const lista = JSON.parse(fs.readFileSync(this.filePath));
-      const index = lista.map((object) => object.id).indexOf(num);
+      const index = lista.findIndex((object) => object.id == num);
       if (lista[index]) {
         lista.splice(index, 1);
         await fs.promises.writeFile(this.filePath, JSON.stringify(lista));
@@ -128,10 +128,10 @@ class ContenedorArchivo {
     }
   }
 
-  getProductsFromCart(id) {
+  getProductsFromCart(num) {
     try {
       const lista = JSON.parse(fs.readFileSync(this.filePath));
-      const index = lista.map((object) => object.id).indexOf(id);
+      const index = lista.findIndex((object) => object.id == num);
       if (lista[index]) {
         return lista[index].productos;
       } else {
