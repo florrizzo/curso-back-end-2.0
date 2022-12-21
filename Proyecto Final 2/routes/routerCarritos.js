@@ -43,7 +43,7 @@ routerCarrito.get("/", async (req, res) => {
       } else if (productoParaCarrito == "No existe el número de id elegido") {
         res.json('error: "No existe ningún producto con ese número de id"');
       } else {
-        carrito.addProductToCart(id, productoParaCarrito);
+        carrito.addProductToCart(id, productoParaCarrito,id_prod);
         res.json(
           `Se añadio el producto ${productoParaCarrito.nombre} al carrito`
         );

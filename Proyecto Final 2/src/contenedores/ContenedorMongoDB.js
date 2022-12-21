@@ -121,12 +121,12 @@ class ContenedorMongoDB {
     return lista[index].productos
   }
 
-  async addProductToCart(num, producto) {
+  async addProductToCart(num, producto,id_prod) {
     const lista = await this.model.find({});
     const index = lista.findIndex((object) => object.id == num);
     lista[index].productos.push(producto)
     await this.model.updateOne(
-      { _id: num },
+      { _id: id_prod },
       {
         $set: {
           productos: lista[index].productos}

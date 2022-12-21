@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "f429be84-1345-4be7-ae62-ff0298aaace6",
+		"name": "Segunda entrega",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24071023"
+	},
+	"item": [
+		{
+			"name": "GET ALL PRODUCT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/productos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID PRODUCT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/productos/AolRDPGWCDPqgTvJNDQW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos",
+						"AolRDPGWCDPqgTvJNDQW"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST PRODUCT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nombre\": \"Tres leches\", \r\n\"descripcion\": \"Pastel frio\", \r\n\"codigo\": 6734, \r\n\"foto\": \"https://st2.depositphotos.com/27072770/50262/i/450/depositphotos_502620128-stock-photo-three-milk-cake-traditional-dessert.jpg\", \r\n\"precio\": 3500, \r\n\"stock\": 20}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT PRODUCT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nombre\": \"Tres leches\", \r\n\"descripcion\": \"Pastel frio\", \r\n\"codigo\": 1111, \r\n\"foto\": \"https://st2.depositphotos.com/27072770/50262/i/450/depositphotos_502620128-stock-photo-three-milk-cake-traditional-dessert.jpg\", \r\n\"precio\": 3500, \r\n\"stock\": 11}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/productos/0BMPzoVNejn8srVgZWj0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos",
+						"0BMPzoVNejn8srVgZWj0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE PRODUCT",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/productos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL CARTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carrito/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carrito",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID CART",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carrito/TRubXXvmQbT3Zpk3u2nV/QEjbE1dVcQuFoFuP7n59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carrito",
+						"TRubXXvmQbT3Zpk3u2nV",
+						"QEjbE1dVcQuFoFuP7n59"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST CART",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carrito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carrito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST PRODUCTO TO CART",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carrito/TRubXXvmQbT3Zpk3u2nV/productos/QEjbE1dVcQuFoFuP7n59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carrito",
+						"TRubXXvmQbT3Zpk3u2nV",
+						"productos",
+						"QEjbE1dVcQuFoFuP7n59"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE CART",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carrito/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carrito",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE PRODUCT FROM CART",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carrito/TRubXXvmQbT3Zpk3u2nV/productos/QEjbE1dVcQuFoFuP7n59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carrito",
+						"TRubXXvmQbT3Zpk3u2nV",
+						"productos",
+						"QEjbE1dVcQuFoFuP7n59"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

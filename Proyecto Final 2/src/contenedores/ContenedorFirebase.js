@@ -8,7 +8,7 @@ admin.initializeApp({
 console.log("me conecte");
 const db = getFirestore();
 
-function validacionId(array, id){
+function validacionId(array, id) {
   array = array.docs.map((item) => {
     return { id: item.id, ...item.data() };
   });
@@ -35,9 +35,9 @@ class ContenedorFirebase {
   async getById(num) {
     const lista = await this.coleccion.get();
     const validacion = validacionId(lista, num);
-    if (validacion){
-      let resultado = await this.coleccion.doc(num).get()
-      return resultado
+    if (validacion) {
+      let resultado = await this.coleccion.doc(num).get();
+      return resultado.data();
     } else {
       return "No existe el número de id elegido";
     }
@@ -56,7 +56,6 @@ class ContenedorFirebase {
         precio: precio,
         stock: stock,
       });
-      console.log(res.id)
       return res.id;
     } catch {
       console.log("Se ha producido un error");
@@ -74,27 +73,77 @@ class ContenedorFirebase {
     precio,
     stock
   ) {
-    
+    const lista = await this.coleccion.get();
+    const validacion = validacionId(lista, num);
+    if (validacion) {
+      const refDocMati = this.coleccion.doc(num);
+      await refDocMati.update({
+        timestamp: timestamp,
+        nombre: nombre,
+        descripcion: descripcion,
+        codigo: codigo,
+        foto: foto,
+        precio: precio,
+        stock: stock,
+      });
+      return "El producto se actualizó con exito";
+    } else {
+      return "No existe el id elegido";
+    }
   }
 
   async deleteById(num) {
-    
+    const lista = await this.coleccion.get();
+    const validacion = validacionId(lista, num);
+    if (validacion) {
+      await this.coleccion.doc(num).delete();
+      return `Se eliminó con exito`;
+    } else {
+      return "No existe el número de id elegido";
+    }
   }
 
   async addCart(timestamp) {
-    
+    try {
+      let res;
+
+      res = await this.coleccion.add({
+        timestamp: timestamp,
+        productos: [],
+      });
+      return res.id;
+    } catch {
+      console.log("Se ha producido un error");
+      return "Se ha producido un error";
+    }
   }
 
   async getProductsFromCart(id) {
-
+    let resultado = await this.coleccion.doc(id).get();
+    resultado = resultado.data();
+    return resultado.productos;
   }
 
-  async addProductToCart(num, producto) {
-    
+  async addProductToCart(num, producto, id_prod) {
+    let resultado = await this.coleccion.doc(num).get();
+    resultado = resultado.data();
+    producto["id"] = id_prod;
+    resultado.productos.push(producto);
+    await this.coleccion.doc(num).update({
+      productos: resultado.productos,
+    });
   }
 
   async deleteProductFromCart(num, id_prod) {
-    
+    let resultado = await this.coleccion.doc(num).get();
+    resultado = resultado.data();
+    const indexProduct = resultado.productos.findIndex(
+      (object) => object.id == id_prod
+    );
+    resultado.productos.splice(indexProduct, 1);
+    await this.coleccion.doc(num).update({
+      productos: resultado.productos,
+    });
   }
 }
 
