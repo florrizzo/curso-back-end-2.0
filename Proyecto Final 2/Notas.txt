@@ -1,9 +1,6 @@
-MongoDB
-usuario: CoderBackEnd
-password: QSaze8bBnE7PX8Tz
+Para probar las distintas bases se debe modificar el archivo .env entre las opciones:
 
-MongoDBCompass
-mongodb+srv://CoderBackEnd:<password>@cluster0.onhgo54.mongodb.net/test
-
-MongoDBVSC
-mongodb+srv://CoderBackEnd:QSaze8bBnE7PX8Tz@cluster0.onhgo54.mongodb.net/test
+INSTANCIA=archivo
+INSTANCIA=memoria
+INSTANCIA=mongo
+INSTANCIA=firebase
