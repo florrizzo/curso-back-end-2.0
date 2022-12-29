@@ -32,11 +32,11 @@
     <div id="div-list-products"></div>
         
     <h2>Centro de Mensajes</h2>
-    <form onsubmit="return false">
+    <form onsubmit="enviarMsg(); return false">
         <input class="input-field" id="input-email" type="text" placeholder="Email" required><br>
         <div class="chat" id="div-list-msgs"></div>
         <input class="input-field" id="input-msg" type="text" placeholder="Mensaje">
-        <input type="submit" value="Enviar!" onclick = "enviarMsg()" class="action-button">
+        <input type="submit" value="Enviar!" class="action-button">
     </form>
 </body>
 </html>

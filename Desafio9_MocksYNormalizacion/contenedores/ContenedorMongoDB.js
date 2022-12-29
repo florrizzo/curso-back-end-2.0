@@ -11,8 +11,8 @@ function validacionId(array, id){
 }
 
 class ContenedorMongoDB {
-  constructor() {
-    this.model = mongoose.model('productos', ModeloProductos.ProductosSchema);
+  constructor({ name, schema }) {
+    this.model = mongoose.model(name, schema);
   }
 
   async getAll() {
@@ -32,17 +32,17 @@ class ContenedorMongoDB {
     }
   }
 
-  async save(nombre, precio, foto) {
+  async save(title, price, thumbnail) {
     try{
       const productoNuevo = new ModeloProductos({
-        nombre: nombre,
-        precio: precio,
-        foto: foto
+        title: title,
+        price: price,
+        thumbnail: thumbnail
       });
       await productoNuevo.save();
-      const aux = await ModeloProductos.find({ nombre: nombre});
-      const id = aux[0]._id;
-      return id
+      // const aux = await ModeloProductos.find({ title: title});
+      // const id = aux[0]._id;
+      // return id
     } catch {
       console.log("Se ha producido un error");
       return "Se ha producido un error"

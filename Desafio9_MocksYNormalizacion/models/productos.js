@@ -6,4 +6,4 @@ const ProductosSchema = new Schema({
   thumbnail: { type: String, required: true},
 });
 
-export const ModeloProductos = model('usuarios', ProductosSchema);
+export const ModeloProductos = model('productos', ProductosSchema);

@@ -5,7 +5,6 @@ socket.on('connect', () => {
 });
 
 socket.on('product-list', (data) => {
-  console.log(data);
   let html1 = `
             <h2>Lista de productos:</h1>                
             <div class="divTable">
