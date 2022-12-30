@@ -1,5 +1,15 @@
 const socket = io();
 
+function denormalizarMensajes(ListMessages) { 
+  const authorSchema = new normalizr.schema.Entity('authors', { idAttribute: 'id' });
+  const messageSchema = new normalizr.schema.Entity('message', {
+    author: authorSchema,
+  }, { idAttribute: "_id" })
+
+  const denormalizedListMessages = normalizr.denormalize(ListMessages.result, [messageSchema], ListMessages.entities);
+  return denormalizedListMessages
+}
+
 socket.on('connect', () => {
   console.log('me conecte!');
 });
@@ -28,19 +38,37 @@ socket.on('product-list', (data) => {
 
 socket.on('msg-list', (data) => {
   let html = '';
-  data.forEach((element) => {
+  console.log(data)
+  let denormalizado = denormalizarMensajes(data[0]);
+  console.log(denormalizado)
+  denormalizado.forEach((element) => {
     html += `
         <div> 
-        <span class="bolded">${element.email}</span>: ${element.fecha} <em>${element.mensaje}</em>
+        <span class="bolded">${element.author.id}</span>: <em>${element.text}</em>
         <div/>`;
   });
+  compresion = Math.round(100 - (parseInt(data[2]) * 100) / (parseInt(data[1])));
   document.getElementById('div-list-msgs').innerHTML = html;
+  document.getElementById('compresion').innerHTML = compresion;
 });
 
 function enviarMsg() {
   const email = document.getElementById('input-email').value;
+  const nombre = document.getElementById('input-nombre').value;
+  const apellido = document.getElementById('input-apellido').value;
+  const edad = document.getElementById('input-edad').value;
+  const alias = document.getElementById('input-alias').value;
+  const avatar = document.getElementById('input-avatar').value;
   const msgParaEnvio = document.getElementById('input-msg').value;
-  socket.emit('msg', { email: email, mensaje: msgParaEnvio });
+  socket.emit('msg', {
+    id: email,
+    nombre: nombre,
+    apellido: apellido,
+    edad: edad,
+    alias: alias,
+    avatar: avatar,
+    text: msgParaEnvio,
+  });
 }
 
 function enviarProducto() {

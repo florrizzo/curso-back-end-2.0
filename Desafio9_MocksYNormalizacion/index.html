@@ -9,6 +9,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/index.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src=https://cdn.jsdelivr.net/npm/normalizr@3.6.2/dist/normalizr.browser.js></script>
 </head>
 <body>
     <h2>Ingrese un producto:</h2>
@@ -32,8 +33,14 @@
     <div id="div-list-products"></div>
         
     <h2>Centro de Mensajes</h2>
+    <h2>(Compresión: <span id="compresion"></span>% )</h2>
     <form onsubmit="enviarMsg(); return false">
         <input class="input-field" id="input-email" type="text" placeholder="Email" required><br>
+        <input class="input-field" id="input-nombre" type="text" placeholder="Nombre" required><br>
+        <input class="input-field" id="input-apellido" type="text" placeholder="Apellido" required><br>
+        <input class="input-field" id="input-edad" type="text" placeholder="Edad" required><br>
+        <input class="input-field" id="input-alias" type="text" placeholder="Alias" required><br>
+        <input class="input-field" id="input-avatar" type="text" placeholder="URL de avatar" required><br>
         <div class="chat" id="div-list-msgs"></div>
         <input class="input-field" id="input-msg" type="text" placeholder="Mensaje">
         <input type="submit" value="Enviar!" class="action-button">
