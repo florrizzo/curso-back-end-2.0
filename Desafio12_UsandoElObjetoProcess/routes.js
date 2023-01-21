@@ -59,5 +59,5 @@ export default {
   postLogin,
   getMain,
   getLogout,
-  getInfo
+  getInfo,
 };

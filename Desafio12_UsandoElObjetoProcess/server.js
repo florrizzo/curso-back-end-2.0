@@ -1,6 +1,6 @@
 import express from 'express';
 const app = express();
-import config from './config.js'
+import config from './config.js';
 import { ProductosDaoMongoDB } from './daos/ProductosDaoMongoDB.js';
 import { MensajesDaoMongoDB } from './daos/MensajesDaoMongoDB.js';
 import mongoose from 'mongoose';
@@ -18,14 +18,13 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import routes from './routes.js';
 import yargss from 'yargs';
 const yargs = yargss(process.argv.slice(2));
-const args = yargs.default({puerto: 8080}).alias({p: 'puerto'}).argv;
+const args = yargs.default({ puerto: 8080 }).alias({ p: 'puerto' }).argv;
 import { fork } from 'child_process';
 
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl:
-      config.MONGO,
+      mongoUrl: config.MONGO,
       mongoOptions: {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -59,10 +58,7 @@ app.set('view engine', 'ejs');
 
 async function connectMG() {
   try {
-    await mongoose.connect(
-      config.MONGO,
-      { useNewUrlParser: true }
-    );
+    await mongoose.connect(config.MONGO, { useNewUrlParser: true });
     console.log('Conectado a mongo! ✅');
   } catch (e) {
     console.log(e);
@@ -154,8 +150,8 @@ const messages = new MensajesDaoMongoDB();
 app.get('/', routes.checkAuthentication, routes.getMain);
 
 app.post(
-  "/login",
-  passport.authenticate("login", { failureRedirect: "/faillogin" }),
+  '/login',
+  passport.authenticate('login', { failureRedirect: '/faillogin' }),
   routes.postLogin
 );
 
@@ -188,17 +184,15 @@ app.get('/info', routes.getInfo);
 app.get('/api/randoms', (req, res) => {
   let cant = req.query.cant;
   cant = parseInt(cant);
-  let computo = fork("./childProcess.js");
-  let father = {msg: "start", cant: cant};
+  let computo = fork('./childProcess.js');
+  let father = { msg: 'start', cant: cant };
   computo.send(father);
 
-  computo.on("message", (msg) => {
-    const {data} = msg;
-    res.send(`La suma es ${data}`)
-  })
-})
-
-
+  computo.on('message', (msg) => {
+    const { data } = msg;
+    res.send(`La suma es ${data}`);
+  });
+});
 
 async function normalizarMensajes() {
   const Messages = await messages.getAll();
