@@ -16,9 +16,6 @@ import bcrypt from 'bcrypt';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import routes from './routes.js';
-// import yargss from 'yargs';
-// const yargs = yargss(process.argv.slice(2));
-// const args = yargs.default({ puerto: 8080 }).alias({ p: 'puerto' }).argv;
 const PORT = parseInt(process.argv[2] || 8080)
 import { fork } from 'child_process';
 
