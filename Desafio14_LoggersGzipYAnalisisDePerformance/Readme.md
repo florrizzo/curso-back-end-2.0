@@ -65,6 +65,8 @@ Sin console.log:
 Con console.log:
 ![inspectConCL.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/inspectConCL.png)
 
+En la lista de procesos se ve que el que más tiempo requiere es "consoleCall". Viendo el código:
+
 ![inspectConCLcodigo.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/inspectConCLcodigo.png)
 
 
@@ -89,4 +91,4 @@ Ver la carpeta "analisisPerformance/autocannon" para ver estos archivos.
 ![autocannonSinCL.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/autocannonSinCL.png)
 
 
-En general se puede observar que el código con console.log requiere muchos más procesos que si no los tiene. Si bien en el gráfico de flama se ve que siempre esta en estado "cold", en un proceso más complicado los console.log van a utilizar muchos recursos.
+En general se puede observar que el código con console.log requiere muchos más procesos que si no los tiene.
