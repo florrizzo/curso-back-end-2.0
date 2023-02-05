@@ -27,9 +27,13 @@ node --prof-process sincl.log >prof_sincl.txt
 Con los console.log de la ruta /info descomentados, repetir los comandos:
 
 node --prof server.js 8081 FORK
+
 (En otra terminal)
+
 artillery quick --count 50 -n 20 http://localhost:8081/info > artillery_concl.txt
+
 Apagar el servidor, cambiar el nombre del archivo "isolate..." a "prof_concl.log" y ejecutar
+
 node --prof-process sincl.log >prof_concl.txt 
 
 Ver la carpeta "analisisPerformance/--prof" para ver estos archivos.
@@ -45,8 +49,11 @@ Podemos ver que en Shared libraries el proceso con console.log lleva muchos mas 
 ![consigna5.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/consigna5.png)
 
 Para ambos casos (console.log comentado y descomentado) ejecutamos
+
 node --inspect server.js
+
 Y en otra terminal
+
 artillery quick --count 50 -n 20 http://localhost:8081/info > inspectSinCL.txt
 
 Ver la carpeta "analisisPerformance/--inspect" para ver estos archivos.
@@ -64,9 +71,13 @@ Con console.log:
 ![consigna6.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/consigna6.png)
 
 Para ambos casos (console.log comentado y descomentado) ejecutamos
+
 npm start
+
 Y en otra terminal
+
 npm test
+
 Apagar el servidor
 
 Ver la carpeta "analisisPerformance/autocannon" para ver estos archivos.
