@@ -43,6 +43,6 @@ Ver la carpeta "analisisPerformance/--prof" para ver estos archivos.
 
 ![autocannonCMD.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/autocannonCMD.png)
 
-![autocannonConCL.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/autocannonCMD.png)
+![autocannonConCL.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/autocannonConCL.png)
 
-![autocannonSinCL.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/autocannonCMD.png)
+![autocannonSinCL.png](https://github.com/florrizzo/curso-back-end-2.0/blob/master/Desafio14_LoggersGzipYAnalisisDePerformance/imagenesReadme/autocannonSinCL.png)
