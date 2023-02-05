@@ -42,7 +42,7 @@ function getLogout(req, res) {
 }
 
 function getInfo(req, res) {
-  /* console.log(`
+/*   console.log(`
   Argumentos de entrada: ${process.argv.slice(2)}
   Nombre de la plataforma (sistema operativo): ${process.platform}
   Versión de node: ${process.version}

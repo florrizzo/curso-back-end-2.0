@@ -25,18 +25,29 @@ import { cpus } from 'os'
 const PORT = parseInt(process.argv[2]) || 8080
 const modoCluster = process.argv[3] == 'CLUSTER'
 
+/* Winston configuration */
+
+const logger = winston.createLogger({
+  level: 'warn',
+  transports: [
+    new winston.transports.Console({ level: 'info' }),
+    new winston.transports.File({ filename: 'warn.log', level: 'warn' }),
+    new winston.transports.File({ filename: 'info.log', level: 'error' }),
+  ],
+});
+
 if (modoCluster && cluster.isPrimary) {
   const numCPUs = cpus().length
 
-  console.log(`Número de procesadores: ${numCPUs}`)
-  console.log(`PID MASTER ${process.pid}`)
+  logger.log('info', `Número de procesadores: ${numCPUs}`)
+  logger.log('info', `PID MASTER ${process.pid}`)
 
   for (let i = 0; i < numCPUs; i++) {
       cluster.fork()
   }
 
   cluster.on('exit', worker => {
-      console.log('Worker', worker.process.pid, 'died', new Date().toLocaleString())
+      logger.log('info', 'Worker', worker.process.pid, 'died', new Date().toLocaleString())
       cluster.fork()
   })
 }
@@ -75,17 +86,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
-
-/* Winston configuration */
-
-const logger = winston.createLogger({
-  level: 'warn',
-  transports: [
-    new winston.transports.Console({ level: 'info' }),
-    new winston.transports.File({ filename: 'warn.log', level: 'warn' }),
-    new winston.transports.File({ filename: 'info.log', level: 'error' }),
-  ],
-});
 
 /* Mongo conection */
 
