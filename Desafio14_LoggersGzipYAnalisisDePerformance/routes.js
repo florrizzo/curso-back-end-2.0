@@ -42,13 +42,12 @@ function getLogout(req, res) {
 }
 
 function getInfo(req, res) {
-/*   console.log(`
-  Argumentos de entrada: ${process.argv.slice(2)}
-  Nombre de la plataforma (sistema operativo): ${process.platform}
-  Versión de node: ${process.version}
-  Memoria total reservada (rss): ${process.memoryUsage.rss()}
-  Path de ejecución: ${process.cwd()}
-  ID del proceso: ${process.pid}`); */
+/*   console.log(`Argumentos de entrada: ${process.argv.slice(2)}`);
+  console.log(`Nombre de la plataforma (sistema operativo): ${process.platform}`);
+  console.log(`Versión de node: ${process.version}`);
+  console.log(`Memoria total reservada (rss): ${process.memoryUsage.rss()}`);
+  console.log(`Path de ejecución: ${process.cwd()}`);
+  console.log(`ID del proceso: ${process.pid}`); */
 
   res.send(`
   Argumentos de entrada: ${process.argv.slice(2)}

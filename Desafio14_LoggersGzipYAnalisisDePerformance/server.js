@@ -22,7 +22,7 @@ import winston from 'winston';
 import cluster from 'cluster'
 import { cpus } from 'os'
 
-const PORT = parseInt(process.argv[2]) || 8080
+const PORT = parseInt(process.argv[2]) || 8081
 const modoCluster = process.argv[3] == 'CLUSTER'
 
 /* Winston configuration */
