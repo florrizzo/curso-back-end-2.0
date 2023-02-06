@@ -19,11 +19,11 @@ import routes from './routes.js';
 import pkg from 'compression';
 const compression = pkg;
 import winston from 'winston';
-import cluster from 'cluster'
-import { cpus } from 'os'
+import cluster from 'cluster';
+import { cpus } from 'os';
 
-const PORT = parseInt(process.argv[2]) || 8081
-const modoCluster = process.argv[3] == 'CLUSTER'
+const PORT = parseInt(process.argv[2]) || 8081;
+const modoCluster = process.argv[3] == 'CLUSTER';
 
 /* Winston configuration */
 
@@ -37,19 +37,25 @@ const logger = winston.createLogger({
 });
 
 if (modoCluster && cluster.isPrimary) {
-  const numCPUs = cpus().length
+  const numCPUs = cpus().length;
 
-  logger.log('info', `Número de procesadores: ${numCPUs}`)
-  logger.log('info', `PID MASTER ${process.pid}`)
+  logger.log('info', `Número de procesadores: ${numCPUs}`);
+  logger.log('info', `PID MASTER ${process.pid}`);
 
   for (let i = 0; i < numCPUs; i++) {
-      cluster.fork()
+    cluster.fork();
   }
 
-  cluster.on('exit', worker => {
-      logger.log('info', 'Worker', worker.process.pid, 'died', new Date().toLocaleString())
-      cluster.fork()
-  })
+  cluster.on('exit', (worker) => {
+    logger.log(
+      'info',
+      'Worker',
+      worker.process.pid,
+      'died',
+      new Date().toLocaleString()
+    );
+    cluster.fork();
+  });
 }
 
 app.use(compression());
@@ -279,13 +285,16 @@ app.get(
   routes.getInfo
 );
 
-app.get('/*', (req, res, next) => {
-  logger.log('warn', 'ruta no encontrada - Method: GET');
-  next();
-},
-(req, res) => {
-  res.json({ error: true, descripcion: 'ruta no encontrada' });
-});
+app.get(
+  '/*',
+  (req, res, next) => {
+    logger.log('warn', 'ruta no encontrada - Method: GET');
+    next();
+  },
+  (req, res) => {
+    res.json({ error: true, descripcion: 'ruta no encontrada' });
+  }
+);
 
 async function normalizarMensajes() {
   const Messages = await messages.getAll();
