@@ -1,0 +1,1 @@
+En el .env se debe agregar la variable Twilio_authToken
