@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const { ModeloCarritos } = require("../models/carritos");
-const ModeloMensajes = require("../models/mensajes");
-const ModeloProductos = require("../models/productos");
+const { ModeloCarritos } = require("./models/carritos");
+const ModeloMensajes = require("./models/mensajes");
+const ModeloProductos = require("./models/productos");
 const logger = require("../config/logger");
 
 function validacionId(array, id) {
