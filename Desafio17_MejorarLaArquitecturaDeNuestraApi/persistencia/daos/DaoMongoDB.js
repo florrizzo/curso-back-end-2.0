@@ -27,6 +27,9 @@ class Singleton {
 }
 
 Singleton.getInstance();
+Singleton.getInstance();
+Singleton.getInstance();
+Singleton.getInstance();
 
 class ContenedorMongoDB {
   constructor({ name, schema }) {

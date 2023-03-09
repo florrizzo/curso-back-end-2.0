@@ -53,13 +53,22 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 
-
 /* Passport */
 app.use(passport.initialize());
 app.use(passport.session());
 
-const routerDatos = require("./rutas/datos");
-app.use("/", routerDatos);
+const routerUsuarios = require("./rutas/usuarios");
+app.use("/usuarios", routerUsuarios);
+
+const routerProductos = require("./rutas/productos");
+app.use("/productos", routerProductos);
+
+const routerCarrito = require("./rutas/carrito");
+app.use("/carrito", routerCarrito);
+
+app.get("/*", (req, res) => {
+  res.redirect("/usuarios/login");
+});
 
 /* const contenedor = new ProductosDaoMongoDB();
 const messages = new MensajesDaoMongoDB(); */

@@ -79,6 +79,7 @@ class ContenedorMemoria {
   }
 }
 
+let instanceProduct = null;
 class ProductosDaoMemoria extends ContenedorMemoria {
   constructor() {
     super([
@@ -105,8 +106,16 @@ class ProductosDaoMemoria extends ContenedorMemoria {
       },
     ]);
   }
+
+  static getInstance() {
+    if (!instanceProduct) {
+      instanceProduct = new ProductosDaoMemoria();
+    }
+    return instanceProduct;
+  }
 }
 
+let instanceCart = null;
 class CarritosDaoMemoria extends ContenedorMemoria {
   constructor() {
     super([
@@ -121,6 +130,13 @@ class CarritosDaoMemoria extends ContenedorMemoria {
         productos: [],
       },
     ]);
+  }
+
+  static getInstance() {
+    if (!instanceCart) {
+      instanceCart = new CarritosDaoMemoria();
+    }
+    return instanceCart;
   }
 }
 

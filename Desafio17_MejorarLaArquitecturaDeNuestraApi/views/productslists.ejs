@@ -8,7 +8,7 @@
       <div id="div-list-products" class="div-left">
         <% if (productos.length > 0){ %>
         <div class="productSearch">
-          <form name="sendCart" action="/buscadorproductos" method="POST">
+          <form name="sendCart" action="/productos/buscadorproductos" method="POST">
             <input type="text" name="buscadorProducto" placeholder="Nombre" />
             <input type="submit" value="Buscar" />
           </form>
@@ -65,7 +65,7 @@
             <form
               name="sendCart"
               class="divCell marginpadding-0"
-              action="/addToCart"
+              action="/carrito/addToCart"
               method="POST"
             >
               <textarea class="hidden" name="addcart"><%=productos[i].title%></textarea>
@@ -83,7 +83,7 @@
 
         <div class="user">
           <h1><%=usuario%></h1>
-          <button class="btn-log"><a href="logout">Desloguear</a></button>
+          <button class="btn-log"><a href="usuarios/logout">Desloguear</a></button>
 
           <p>Tus datos:</p>
           <p>Nombre: <%=nombre%></p>
@@ -100,7 +100,7 @@
               <form
               name="deleteFromCart"
               class="marginpadding-0"
-              action="/deleteFromCart"
+              action="/carrito/deleteFromCart"
               method="POST"
             >
               <textarea class="hidden" name="deletefromcart"><%=productosCarrito[i].title%></textarea>
@@ -109,10 +109,10 @@
             </div>
             <% } %>
             <div> <em> Total: - <%=total%> </em> </div>
-            <form name="emptyCart" action="/emptyCart" method="POST">
+            <form name="emptyCart" action="/carrito/emptyCart" method="POST">
               <input type="submit" class="btn-cart" value="Vaciar Carrito"/> 
             </form> 
-              <form name="sendCart" action="/enviarCarrito" method="POST">
+              <form name="sendCart" action="/carrito/enviarCarrito" method="POST">
                 <input type="submit" class="action-button" value="Enviar"/> 
               </form> 
             <% } %>
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <h2>Centro de Mensajes</h2>
+    <!-- <h2>Centro de Mensajes</h2>
     <form onsubmit="enviarMsg(); return false">
       <input
         class="input-field"
@@ -140,6 +140,6 @@
         placeholder="Mensaje"
       />
       <input type="submit" value="Enviar!" class="action-button" />
-    </form>
+    </form> -->
   </body>
 </html>
