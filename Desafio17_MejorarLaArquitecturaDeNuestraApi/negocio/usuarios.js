@@ -1,5 +1,6 @@
 const DAO = require("../persistencia/datos");
 const ProductosDao = DAO[0];
+console.log(ProductosDao)
 const CarritosDao = DAO[1];
 const contenedor = ProductosDao.getInstance();
 const contenedorCarrito = CarritosDao.getInstance();

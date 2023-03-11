@@ -10,7 +10,9 @@ class Singleton {
   constructor() {
     (async () => {
       try {
-        await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+        await mongoose.connect(process.env.MONGO_URL, {
+          useNewUrlParser: true,
+        });
         logger.log("info", "Conectado a mongo! ✅");
       } catch (e) {
         logger.log("error", e);
@@ -43,7 +45,7 @@ class ContenedorMongoDB {
 
   async getByName(name) {
     const resultado = await this.model.find(
-      { title: {'$regex': name, $options:'i'}}, 
+      { title: { $regex: name, $options: "i" } },
       { _id: false, __v: false }
     );
     return resultado;
@@ -150,28 +152,44 @@ class ContenedorMongoDB {
   }
 }
 
+let instanceProduct = null;
 class ProductosDaoMongoDB extends ContenedorMongoDB {
   constructor() {
     super({
-      name: 'productos',
+      name: "productos",
       schema: ModeloProductos.ProductosSchema,
     });
   }
+
+  static getInstance() {
+    if (!instanceProduct) {
+      instanceProduct = new ProductosDaoMongoDB();
+    }
+    return instanceProduct;
+  }
 }
 
+let instanceCart = null;
 class CarritosDaoMongoDB extends ContenedorMongoDB {
   constructor() {
     super({
-      name: 'carritos',
+      name: "carritos",
       schema: ModeloCarritos.CarritosSchema,
     });
+  }
+
+  static getInstance() {
+    if (!instanceCart) {
+      instanceCart = new CarritosDaoMongoDB();
+    }
+    return instanceCart;
   }
 }
 
 class MensajesDaoMongoDB extends ContenedorMongoDB {
   constructor() {
     super({
-      name: 'mensajes',
+      name: "mensajes",
       schema: ModeloMensajes.MensajesSchema,
     });
   }

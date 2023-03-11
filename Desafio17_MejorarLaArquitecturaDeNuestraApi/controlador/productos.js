@@ -8,7 +8,7 @@ async function postProductFilter(req, res) {
     req.body.productosEncontrados = resultado;
     usuarios.getMain(req, res);
   } else {
-    res.redirect("/");
+    res.redirect("/usuarios");
   }
 }
 
