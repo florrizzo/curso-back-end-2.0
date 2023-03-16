@@ -4,14 +4,6 @@ const container = ProductsDao.getInstance();
 const logger = require("../config/logger");
 const ProductsValidation = require("../config/validation");
 
-async function validateId(id) {
-  let result = await container.getById(id);
-  if (!result) {
-    return "No se encontró ningún producto";
-  }
-  return result;
-}
-
 async function getProducts() {
   let resultado = await container.getAll();
   return resultado;
@@ -19,14 +11,18 @@ async function getProducts() {
 
 async function getProductByName(name) {
   let result = await container.getByName(name);
-  if (!result) {
+  if (!result || result.length < 1 ) {
     return "No se encontró ningún producto";
   }
   return result;
 }
 
 async function getProductById(id) {
-  return validateId(id);
+  let result = await container.getById(id);
+  if (!result) {
+    return "No se encontró ningún producto";
+  }
+  return result
 }
 
 async function postProduct(title, thumbnail, price) {
@@ -44,7 +40,10 @@ async function postProduct(title, thumbnail, price) {
 }
 
 async function putProductById(id, title, thumbnail, price) {
-  return validateId(id);
+  let result = await container.getById(id);
+  if (!result) {
+    return "No se encontró ningún producto";
+  }
   const { error, value } = await ProductsValidation.validate({
     title: title,
     thumbnail: thumbnail,
@@ -60,7 +59,6 @@ async function putProductById(id, title, thumbnail, price) {
 }
 
 async function deleteProductById(id) {
-  return validateId(id);
   let result = await container.getById(id);
   if (!result) {
     return "No se encontró ningún producto";

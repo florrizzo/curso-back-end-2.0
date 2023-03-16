@@ -6,21 +6,15 @@ const HttpServer = require("http").Server;
 const session = require("express-session");
 const cors = require("cors");
 const logger = require("./config/logger");
+const config = require("./config/config")
 
 /* Express server */
 const app = express();
 
-if (process.env.MODE != "production") {
-  require("dotenv").config();
-}
-
-const PORT = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
-
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl: MONGO_URL,
+      mongoUrl: config.MONGO_URL,
       mongoOptions: {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -36,11 +30,11 @@ app.use(
 //IMPLEMENTACION
 const httpServer = require("http").createServer(app);
 
-httpServer.listen(PORT, () => {
-  console.log({
-    PORT,
-    MONGO_URL,
-  });
+httpServer.listen(config.PORT, () => {
+  console.log(
+    config.PORT,
+    config.MONGO_URL,
+  );
 });
 
 app.use(express.json());
